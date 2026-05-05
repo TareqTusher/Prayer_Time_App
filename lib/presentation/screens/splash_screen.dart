@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:prayer_times_app/presentation/screens/app_screen.dart';
 
@@ -10,8 +9,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   const SizedBox(height: 20),
 
                   // Mosque Illustration Placeholder
-                  Image.asset(
-                    "assets/mosque.png", // add your image here
-                    height: 220,
-                  ),
+                  // Image.asset(
+                  //   "assets/mosque.png", // add your image here
+                  //   height: 220,
+                  // ),
                 ],
               ),
 
@@ -83,27 +80,37 @@ class _SplashScreenState extends State<SplashScreen> {
 
                     const SizedBox(height: 24),
 
-   InkWell(
-    borderRadius: BorderRadius.circular(30),
-    onTap: (){
-
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>AppScreen()));
-    },
-     child: Container(
-      height: 50,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-              Icon(Icons.play_arrow,color: Color(0xFF0D5C46),size: 20,),
-          Text("Start Now",style: TextStyle(color: Color(0xFF0D5C46)),)
-        ],),
-      ),
-   ),
-   
+                    InkWell(
+                      borderRadius: BorderRadius.circular(30),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AppScreen()),
+                        );
+                      },
+                      child: Container(
+                        height: 50,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.play_arrow,
+                              color: Color(0xFF0D5C46),
+                              size: 20,
+                            ),
+                            Text(
+                              "Start Now",
+                              style: TextStyle(color: Color(0xFF0D5C46)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
 
                     const SizedBox(height: 30),
                   ],

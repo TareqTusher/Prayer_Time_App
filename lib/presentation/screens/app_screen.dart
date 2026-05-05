@@ -1,7 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:prayer_times_app/presentation/widgets/header_section.dart';
+import 'package:prayer_times_app/presentation/widgets/prayer_time_section.dart';
+import 'package:prayer_times_app/presentation/widgets/time_section.dart';
 
 class AppScreen extends StatefulWidget {
   const AppScreen({super.key});
@@ -11,22 +11,6 @@ class AppScreen extends StatefulWidget {
 }
 
 class _AppScreenState extends State<AppScreen> {
-  String time = "";
-  @override
-  
-  void initState() {
-    super.initState();
-    updateTime();
-   Timer.periodic(Duration(seconds: 1),(t){
-
-    updateTime();
-   } );
-  }
-void updateTime(){
-   setState(() {
-      time = DateFormat("hh:mm ss a").format(DateTime.now());
-    });
-}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,36 +25,61 @@ void updateTime(){
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Prayer Times6tutyu",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Dhaka Bangladesh",
-                  style: TextStyle(color: Colors.teal, fontSize: 20),
-                ),
-                Text("15 Shawwal 1448 ", style: TextStyle(fontSize: 14)),
-                SizedBox(height: 20),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                HeaderSection(),
+                SizedBox(height: 12),
+                TimeSection(),
+                SizedBox(height: 12),
 
-                    color: Colors.white,
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF1ABC9C), // teal
+                        Color(0xFF16A085),
+                      ],
+                    ),
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Current Time", style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 12),
-                      Text(time),
+                      Text(
+                        "Next Prayer",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(height: 4),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Fazar",
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                "5 May 2026",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          Icon(Icons.sunny, size: 40, color: Colors.amber),
+                        ],
+                      ),
                     ],
                   ),
                 ),
+
+                SizedBox(height: 12),
+                PrayerTimeSection(),
               ],
             ),
           ),
