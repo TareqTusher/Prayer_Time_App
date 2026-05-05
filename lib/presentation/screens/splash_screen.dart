@@ -29,22 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
               Column(
                 children: [
+                  Image.asset("assets/images/mosjid.png",color: Colors.white.withValues(alpha: 0.1),fit: BoxFit.cover,width: double.infinity,),
                   const SizedBox(height: 20),
-                  const Text(
-                    "SalahMate",
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // const Text(
+                  //   "SalahMate",
+                  //   style: TextStyle(
+                  //     fontSize: 26,
+                  //     fontWeight: FontWeight.bold,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
 
-                  // Mosque Illustration Placeholder
-                  // Image.asset(
-                  //   "assets/mosque.png", // add your image here
-                  //   height: 220,
-                  // ),
+                
                 ],
               ),
 
