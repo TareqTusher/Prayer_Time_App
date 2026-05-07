@@ -25,15 +25,12 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
   @override
   void initState() {
     super.initState();
+    updateNextPrayer(); 
 
-    updateNextPrayer(); // ✅ initial set
-
-  
     timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       updateNextPrayer();
     });
   }
-
   void updateNextPrayer() {
     int newIndex = getNextPrayerIndex();
 
@@ -58,18 +55,16 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
         prayerTime.hour,
         prayerTime.minute,
       );
-
       if (now.isBefore(fullTime)) {
         return i;
       }
     }
-
-    return 0; // next day fajr
+    return 0; 
   }
 
   @override
   void dispose() {
-    timer?.cancel(); // ✅ important
+    timer?.cancel(); 
     super.dispose();
   }
 
@@ -114,7 +109,7 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          prayers[index].name, // ✅ dynamic name
+                          prayers[index].name, 
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
