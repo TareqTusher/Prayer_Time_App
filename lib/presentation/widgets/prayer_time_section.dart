@@ -25,17 +25,12 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
   @override
   void initState() {
     super.initState();
-    updateNextPrayer(); 
-
-<<<<<<< HEAD
-=======
     updateNextPrayer();
-
->>>>>>> 2f2f04a53c93173c0e1d1910c4de25e8579948f4
     timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       updateNextPrayer();
-    });
+    }); 
   }
+
   void updateNextPrayer() {
     int newIndex = getNextPrayerIndex();
 
@@ -51,6 +46,9 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
 
     for (int i = 0; i < prayers.length; i++) {
       DateTime prayerTime = DateFormat("hh:mm a").parse(prayers[i].time);
+      print("prayerTime $prayerTime}");
+      print("Prayer time2 ${prayers[i].time}");
+      print("Prayer time3 ${prayers[i]}");
 
       DateTime fullTime = DateTime(
         now.year,
@@ -59,91 +57,34 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
         prayerTime.hour,
         prayerTime.minute,
       );
+      print("Full Time $fullTime");
       if (now.isBefore(fullTime)) {
         return i;
       }
+      print("i $i");
     }
-<<<<<<< HEAD
-    return 0; 
-=======
-
     return 0;
->>>>>>> 2f2f04a53c93173c0e1d1910c4de25e8579948f4
   }
 
   @override
   void dispose() {
-<<<<<<< HEAD
-    timer?.cancel(); 
-=======
     timer?.cancel();
->>>>>>> 2f2f04a53c93173c0e1d1910c4de25e8579948f4
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(color: Colors.grey, blurRadius: 5, spreadRadius: 0.0),
+        ],
       ),
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                color: selectedIndex == index
-                    ? Colors.amber
-                    : Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 30,
-                          child: Image.asset(
-                            PrayerList.images[index],
-                            color: Colors.amber,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          prayers[index].name, 
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RichText(
-                      text: TextSpan(
-=======
-    return Card(
-      elevation: 10,
-      child: Container(
-        padding: EdgeInsets.zero,
-      
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
         child: ListView.separated(
-          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return InkWell(
@@ -153,63 +94,61 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.zero,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: selectedIndex == index
-                      ? Colors.teal.shade50
-                      : Colors.white,
-                      borderRadius: BorderRadius.circular(12)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
->>>>>>> 2f2f04a53c93173c0e1d1910c4de25e8579948f4
-                        children: [
-                          SizedBox(
-                            height: 30,
-                            child: Image.asset(
-                              PrayerList.images[index],
-                              color: Colors.amber,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            prayers[index].name,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      RichText(
-                        text: TextSpan(
+                color: Colors.red,
+                child: Container(
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: selectedIndex == index
+                        ? Colors.teal.shade50
+                        : Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
                           children: [
-                            TextSpan(
-                              text: prayers[index].time,
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.green.shade900,
+                            SizedBox(
+                              height: 30,
+                              child: Image.asset(
+                                PrayerList.images[index],
+                                color: Colors.amber,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              prayers[index].name,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: prayers[index].time,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.green.shade900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return const Divider(
-              height: 1,
-            );
+            return const Divider(height: 1);
           },
           itemCount: prayers.length,
         ),

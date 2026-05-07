@@ -34,8 +34,16 @@ class _TimeSectionState extends State<TimeSection> {
       padding: EdgeInsets.symmetric(vertical: 16),
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-
+      boxShadow: [
+        BoxShadow(color: Colors.grey,
+        
+        blurRadius: 5,
+        spreadRadius: 0.0
+        
+        )
+      ],
+        borderRadius: BorderRadius.circular(12),
+    
         color: Colors.white,
       ),
       child: Column(

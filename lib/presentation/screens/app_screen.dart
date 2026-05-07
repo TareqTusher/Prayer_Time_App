@@ -15,7 +15,7 @@ class _AppScreenState extends State<AppScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.teal.shade50,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -35,6 +35,16 @@ class _AppScreenState extends State<AppScreen> {
                     width: double.infinity,
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFF1ABC9C),
+                          spreadRadius: 0,
+                          blurRadius: 5,
+                          offset: Offset.zero,
+
+                          //  spreadRadius: 0.5
+                        ),
+                      ],
                       borderRadius: BorderRadius.circular(12),
                       gradient: LinearGradient(
                         colors: [Color(0xFF1ABC9C), Color(0xFF16A085)],
@@ -78,14 +88,14 @@ class _AppScreenState extends State<AppScreen> {
 
                   SizedBox(height: 12),
                   PrayerTimeSection(),
-                  SizedBox(height: 12,)
+                  SizedBox(height: 12),
                 ],
               ),
             ),
           ),
         ),
         bottomSheet: Container(
-          color: Colors.teal.shade50,
+          color: Colors.white,
           child: Text(
             "Created by Md Tariqul Islam",
             style: TextStyle(fontSize: 10),
