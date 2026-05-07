@@ -78,6 +78,7 @@ class _AppScreenState extends State<AppScreen> {
 
                   SizedBox(height: 12),
                   PrayerTimeSection(),
+                  SizedBox(height: 12,)
                 ],
               ),
             ),
