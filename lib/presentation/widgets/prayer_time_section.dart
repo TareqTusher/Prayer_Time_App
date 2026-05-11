@@ -46,9 +46,6 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
 
     for (int i = 0; i < prayers.length; i++) {
       DateTime prayerTime = DateFormat("hh:mm a").parse(prayers[i].time);
-      print("prayerTime $prayerTime}");
-      print("Prayer time2 ${prayers[i].time}");
-      print("Prayer time3 ${prayers[i]}");
 
       DateTime fullTime = DateTime(
         now.year,
@@ -57,11 +54,9 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
         prayerTime.hour,
         prayerTime.minute,
       );
-      print("Full Time $fullTime");
       if (now.isBefore(fullTime)) {
         return i;
       }
-      print("i $i");
     }
     return 0;
   }
