@@ -150,8 +150,9 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
       ),
     );
   }
-}
 
+
+}
 class PrayerModel {
   final String name;
   final String time;

@@ -14,7 +14,7 @@ class NetworkCaller {
       Uri.parse(url),
       body: jsonEncode(body),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type':'application/json',
       },
     );
 
