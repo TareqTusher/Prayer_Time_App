@@ -1,9 +1,9 @@
-class TimePrayerMOdel {
+class TimePrayerModel {
     int? code;
     String? status;
     Data? data;
 
-    TimePrayerMOdel({
+    TimePrayerModel({
         this.code,
         this.status,
         this.data,
