@@ -18,9 +18,19 @@ class _HeaderSectionState extends State<HeaderSection> {
         Text(
           "Prayer Times",
           style: TextStyle(
-            color: Colors.black,
+      
+            
             fontSize: 40,
             fontWeight: FontWeight.w500,
+            foreground: Paint()
+      ..shader = const LinearGradient(
+        colors: [
+          Colors.teal,
+          Colors.orange,
+        ],
+      ).createShader(
+        Rect.fromLTWH(100, 70, 200, 70),
+      ),
           ),
         ),
         Text(

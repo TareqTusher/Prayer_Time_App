@@ -1,261 +1,95 @@
-class TimePrayerModel {
-    int? code;
-    String? status;
-    Data? data;
+import 'dart:convert';
 
-    TimePrayerModel({
-        this.code,
-        this.status,
-        this.data,
-    });
+PrayerTimeModel welcomeFromJson(String str) =>
+    PrayerTimeModel.fromJson(json.decode(str));
 
+String welcomeToJson(PrayerTimeModel data) => json.encode(data.toJson());
+
+class PrayerTimeModel {
+  int? code;
+  String? status;
+  Data? data;
+
+  PrayerTimeModel({this.code, this.status, this.data});
+
+  factory PrayerTimeModel.fromJson(Map<String, dynamic> json) =>
+      PrayerTimeModel(
+        code: json["code"],
+        status: json["status"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+    "code": code,
+    "status": status,
+    "data": data?.toJson(),
+  };
 }
 
 class Data {
-    Timings? timings;
-    Date? date;
-    Meta? meta;
+  Timings? timings;
 
-    Data({
-        this.timings,
-        this.date,
-        this.meta,
-    });
+  Data({this.timings});
 
-}
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    timings: json["timings"] == null ? null : Timings.fromJson(json["timings"]),
+  );
 
-class Date {
-    String? readable;
-    String? timestamp;
-    Hijri? hijri;
-    Gregorian? gregorian;
-
-    Date({
-        this.readable,
-        this.timestamp,
-        this.hijri,
-        this.gregorian,
-    });
-
-}
-
-class Gregorian {
-    String? date;
-    String? format;
-    String? day;
-    GregorianWeekday? weekday;
-    GregorianMonth? month;
-    String? year;
-    Designation? designation;
-    bool? lunarSighting;
-
-    Gregorian({
-        this.date,
-        this.format,
-        this.day,
-        this.weekday,
-        this.month,
-        this.year,
-        this.designation,
-        this.lunarSighting,
-    });
-
-}
-
-class Designation {
-    String? abbreviated;
-    String? expanded;
-
-    Designation({
-        this.abbreviated,
-        this.expanded,
-    });
-
-}
-
-class GregorianMonth {
-    int? number;
-    String? en;
-
-    GregorianMonth({
-        this.number,
-        this.en,
-    });
-
-}
-
-class GregorianWeekday {
-    String? en;
-
-    GregorianWeekday({
-        this.en,
-    });
-
-}
-
-class Hijri {
-    String? date;
-    String? format;
-    String? day;
-    HijriWeekday? weekday;
-    HijriMonth? month;
-    String? year;
-    Designation? designation;
-    List<String>? holidays;
-    List<dynamic>? adjustedHolidays;
-    String? method;
-
-    Hijri({
-        this.date,
-        this.format,
-        this.day,
-        this.weekday,
-        this.month,
-        this.year,
-        this.designation,
-        this.holidays,
-        this.adjustedHolidays,
-        this.method,
-    });
-
-}
-
-class HijriMonth {
-    int? number;
-    String? en;
-    String? ar;
-    int? days;
-
-    HijriMonth({
-        this.number,
-        this.en,
-        this.ar,
-        this.days,
-    });
-
-}
-
-class HijriWeekday {
-    String? en;
-    String? ar;
-
-    HijriWeekday({
-        this.en,
-        this.ar,
-    });
-
-}
-
-class Meta {
-    double? latitude;
-    double? longitude;
-    String? timezone;
-    Method? method;
-    String? latitudeAdjustmentMethod;
-    String? midnightMode;
-    String? school;
-    Offset? offset;
-
-    Meta({
-        this.latitude,
-        this.longitude,
-        this.timezone,
-        this.method,
-        this.latitudeAdjustmentMethod,
-        this.midnightMode,
-        this.school,
-        this.offset,
-    });
-
-}
-
-class Method {
-    int? id;
-    String? name;
-    Params? params;
-    Location? location;
-
-    Method({
-        this.id,
-        this.name,
-        this.params,
-        this.location,
-    });
-
-}
-
-class Location {
-    double? latitude;
-    double? longitude;
-
-    Location({
-        this.latitude,
-        this.longitude,
-    });
-
-}
-
-class Params {
-    int? fajr;
-    int? isha;
-
-    Params({
-        this.fajr,
-        this.isha,
-    });
-
-}
-
-class Offset {
-    String? imsak;
-    String? fajr;
-    String? sunrise;
-    String? dhuhr;
-    String? asr;
-    String? maghrib;
-    int? sunset;
-    String? isha;
-    String? midnight;
-
-    Offset({
-        this.imsak,
-        this.fajr,
-        this.sunrise,
-        this.dhuhr,
-        this.asr,
-        this.maghrib,
-        this.sunset,
-        this.isha,
-        this.midnight,
-    });
-
+  Map<String, dynamic> toJson() => {"timings": timings?.toJson()};
 }
 
 class Timings {
-    String? fajr;
-    String? sunrise;
-    String? dhuhr;
-    String? asr;
-    String? sunset;
-    String? maghrib;
-    String? isha;
-    String? imsak;
-    String? midnight;
-    String? firstthird;
-    String? lastthird;
+  String? fajr;
+  String? sunrise;
+  String? dhuhr;
+  String? asr;
+  String? sunset;
+  String? maghrib;
+  String? isha;
+  String? imsak;
+  String? midnight;
+  String? firstthird;
+  String? lastthird;
 
-    Timings({
-        this.fajr,
-        this.sunrise,
-        this.dhuhr,
-        this.asr,
-        this.sunset,
-        this.maghrib,
-        this.isha,
-        this.imsak,
-        this.midnight,
-        this.firstthird,
-        this.lastthird,
-    });
+  Timings({
+    this.fajr,
+    this.sunrise,
+    this.dhuhr,
+    this.asr,
+    this.sunset,
+    this.maghrib,
+    this.isha,
+    this.imsak,
+    this.midnight,
+    this.firstthird,
+    this.lastthird,
+  });
 
+  factory Timings.fromJson(Map<String, dynamic> json) => Timings(
+    fajr: json["Fajr"],
+    sunrise: json["Sunrise"],
+    dhuhr: json["Dhuhr"],
+    asr: json["Asr"],
+    sunset: json["Sunset"],
+    maghrib: json["Maghrib"],
+    isha: json["Isha"],
+    imsak: json["Imsak"],
+    midnight: json["Midnight"],
+    firstthird: json["Firstthird"],
+    lastthird: json["Lastthird"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "Fajr": fajr,
+    "Sunrise": sunrise,
+    "Dhuhr": dhuhr,
+    "Asr": asr,
+    "Sunset": sunset,
+    "Maghrib": maghrib,
+    "Isha": isha,
+    "Imsak": imsak,
+    "Midnight": midnight,
+    "Firstthird": firstthird,
+    "Lastthird": lastthird,
+  };
 }

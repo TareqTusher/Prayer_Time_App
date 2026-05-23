@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:prayer_times_app/controller/network_caller.dart';
+import 'package:prayer_times_app/controller/network_response.dart';
 import 'package:prayer_times_app/controller/urls.dart';
+import 'package:prayer_times_app/model/prayer_model.dart';
 import 'package:prayer_times_app/model/time_prayer_model.dart';
 import 'package:prayer_times_app/presentation/widgets/prayer_list.dart';
 
@@ -21,7 +24,7 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
 
   bool inProgress = false;
 
-  TimePrayerModel? timePrayerModel;
+  PrayerTimeModel? timePrayerModel;
 
   List<PrayerModel> prayers = [];
 
@@ -29,60 +32,67 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
   void initState() {
     super.initState();
 
-    getPrayerTime();
-
+    //getPrayerTime();
+    prayerTime();
     timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       updateNextPrayer();
     });
   }
 
-  Future<void> getPrayerTime() async {
-    inProgress = true;
 
-    setState(() {});
 
-    String currentDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
 
-    final response = await NetworkCaller().getRequest(
-      Urls.prayerTimeUrl(currentDate),
-    );
+Future<void> prayerTime() async {
+  inProgress = true;
+  setState(() {});
 
-    if (response.isSuccess) {
-      final json = response.jsonResponse;
+  log("Check");
 
-      timePrayerModel = TimePrayerModel(
-        code: json['code'],
-        status: json['status'],
-        data: Data(
-          timings: Timings(
-            fajr: json['data']['timings']['Fajr'],
-            dhuhr: json['data']['timings']['Dhuhr'],
-            asr: json['data']['timings']['Asr'],
-            maghrib: json['data']['timings']['Maghrib'],
-            isha: json['data']['timings']['Isha'],
-          ),
-        ),
-      );
+  final String now = DateFormat('dd-MM-yyyy').format(DateTime.now());
 
-      prayers = [
-        PrayerModel("Fajr", timePrayerModel?.data?.timings?.fajr ?? ""),
+  final NetworkResponse response = await NetworkCaller().getRequest(
+    Urls.prayerTimeUrl(now),
+  );
 
-        PrayerModel("Dhuhr", timePrayerModel?.data?.timings?.dhuhr ?? ""),
+  if (response.isSuccess) {
+    timePrayerModel = PrayerTimeModel.fromJson(response.jsonResponse);
+    log(timePrayerModel.toString());
 
-        PrayerModel("Asr", timePrayerModel?.data?.timings?.asr ?? ""),
+    prayers = [
+      PrayerModel(
+        name: "Fajr",
+        time: timePrayerModel?.data?.timings?.fajr ?? "",
+      ),
 
-        PrayerModel("Maghrib", timePrayerModel?.data?.timings?.maghrib ?? ""),
+      PrayerModel(
+        name: "Dhuhr",
+        time: timePrayerModel?.data?.timings?.dhuhr ?? "",
+      ),
 
-        PrayerModel("Isha", timePrayerModel?.data?.timings?.isha ?? ""),
-      ];
+      PrayerModel(
+        name: "Asr",
+        time: timePrayerModel?.data?.timings?.asr ?? "",
+      ),
 
-      updateNextPrayer();
-    }
+      PrayerModel(
+        name: "Maghrib",
+        time: timePrayerModel?.data?.timings?.maghrib ?? "",
+      ),
 
-    inProgress = false;
+      PrayerModel(
+        name: "Isha",
+        time: timePrayerModel?.data?.timings?.isha ?? "",
+      ),
+    ];
 
-    setState(() {});
+    selectedIndex = getNextPrayerIndex();
+  } else {
+    log(response.errorMessage.toString());
   }
+
+  inProgress = false;
+  setState(() {});
+}
 
   void updateNextPrayer() {
     int newIndex = getNextPrayerIndex();
@@ -189,8 +199,8 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
                           const SizedBox(width: 8),
 
                           Text(
-                            prayers[index].name,
-
+                             prayers[index].name,
+                            //prayerModel.data!.timings!.asr.toString(),
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -218,16 +228,11 @@ class _PrayerTimeSectionState extends State<PrayerTimeSection> {
             return const Divider(height: 1);
           },
 
-          itemCount: prayers.length,
+          itemCount:prayers.length,
         ),
       ),
     );
   }
 }
 
-class PrayerModel {
-  final String name;
-  final String time;
 
-  PrayerModel(this.name, this.time);
-}

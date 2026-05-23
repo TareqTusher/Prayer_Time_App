@@ -62,3 +62,50 @@ class _TimeSectionState extends State<TimeSection> {
     );
   }
 }
+  // Future<void> getPrayerTime() async {
+  //   inProgress = true;
+
+  //   setState(() {});
+
+  //   String currentDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
+
+  //   final response = await NetworkCaller().getRequest(
+  //     Urls.prayerTimeUrl(currentDate),
+  //   );
+
+  //   if (response.isSuccess) {
+  //     final json = response.jsonResponse;
+
+  //     timePrayerModel = PrayerTimeModel(
+  //       code: json['code'],
+  //       status: json['status'],
+  //       data: Data(
+  //         timings: Timings(
+  //           fajr: json['data']['timings']['Fajr'],
+  //           dhuhr: json['data']['timings']['Dhuhr'],
+  //           asr: json['data']['timings']['Asr'],
+  //           maghrib: json['data']['timings']['Maghrib'],
+  //           isha: json['data']['timings']['Isha'],
+  //         ),
+  //       ),
+  //     );
+
+  //     prayers = [
+  //       PrayerModel("Fajr", timePrayerModel?.data?.timings?.fajr ?? ""),
+
+  //       PrayerModel("Dhuhr", timePrayerModel?.data?.timings?.dhuhr ?? ""),
+
+  //       PrayerModel("Asr", timePrayerModel?.data?.timings?.asr ?? ""),
+
+  //       PrayerModel("Maghrib", timePrayerModel?.data?.timings?.maghrib ?? ""),
+
+  //       PrayerModel("Isha", timePrayerModel?.data?.timings?.isha ?? ""),
+  //     ];
+
+  //     updateNextPrayer();
+  //   }
+
+  //   inProgress = false;
+
+  //   setState(() {});
+  // }

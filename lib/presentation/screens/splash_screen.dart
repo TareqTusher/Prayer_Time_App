@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
-
+      
                         Positioned(
                           bottom: 0,
                           left: 0,
@@ -61,11 +61,11 @@ class _SplashScreenState extends State<SplashScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
-
-                    const SizedBox(height: 20),
+      
+                  
                   ],
                 ),
-
+      
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
@@ -75,9 +75,9 @@ class _SplashScreenState extends State<SplashScreen> {
                         color: Colors.white,
                         size: 28,
                       ),
-
+      
                       const SizedBox(height: 10),
-
+      
                       Text(
                         "Stay Connected\nwith Salah",
                         textAlign: TextAlign.center,
@@ -87,9 +87,9 @@ class _SplashScreenState extends State<SplashScreen> {
                           color: Colors.white,
                         ),
                       ),
-
+      
                       const SizedBox(height: 10),
-
+      
                       Text(
                         "Never miss a prayer. Get accurate prayer times based on your location.",
                         textAlign: TextAlign.center,
@@ -98,9 +98,9 @@ class _SplashScreenState extends State<SplashScreen> {
                           color: Colors.white70,
                         ),
                       ),
-
+      
                       const SizedBox(height: 24),
-
+      
                       InkWell(
                         borderRadius: BorderRadius.circular(30),
                         onTap: () {
@@ -134,7 +134,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ),
                       ),
-
+      
                       const SizedBox(height: 30),
                     ],
                   ),
